@@ -19,7 +19,59 @@
     </div>
 
     <div class="container text-center">
-      <h3>Get in Touch</h3>
+        <h3 id="output"></h3>
+        <br />
+        <div>Enter the code Below</div>
+        <div id="message" class="alert alert-danger" style="display: none">
+          <strong>Wrong Code, Try Again</strong>
+        </div>
+        <input type="number" class="form-control" id="code" />
+        <br />
+        <button class="btn btn-primary" onclick="checkCode()">
+          Submit
+        </button>
     </div>
+    <script>
+      function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(";");
+        for (let i = 0; i < ca.length; i++) {
+          let c = ca[i];
+          while (c.charAt(0) == " ") {
+            c = c.substring(1);
+          }
+          if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+          }
+        }
+        return "";
+      }
+      function setCookie(cname, cvalue) {
+        const d = new Date();
+        d.setTime(d.getTime() + 2 * 24 * 60 * 60 * 1000);
+        let expires = "expires=" + d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+      }
+
+      const count = getCookie("count") ? parseInt(getCookie("count")) : 0;
+      const data = [
+        { clue: "Welcome to Treasure Hunt", code: 01 },
+        { clue: "Clue 2", code: 02 },
+      ];
+
+      document.getElementById("output").innerHTML = data[count].clue;
+setCookie("name", "sdh")
+      function checkCode() {
+        const enteredCode = document.getElementById("code").value;
+        if (enteredCode == data[count].code) {
+          document.getElementById("message").style.display = "none";
+          setCookie("count", count + 1);
+          document.getElementById("output").innerHTML = data[count].clue;
+        } else {
+          document.getElementById("message").style.display = "block";
+        }
+      }
+    </script>
   </body>
 </html>
