@@ -25,13 +25,15 @@
       <div id="message" class="alert alert-danger" style="display: none">
         <strong>Wrong Code, Try Again</strong>
       </div>
-      <input type="number" class="form-control" id="code" />
-      <br />
-      <button class="btn btn-primary" onclick="checkCode()">Submit</button>
+      <div class="row">
+        <input type="number" class="form-control" id="code" />
+        <button class="btn btn-primary" onclick="checkCode()">Submit</button>
+      </div>
     </div>
     <script>
-
-      let count = localStorage.getItem("count") ? localStorage.getItem("count") : 0;
+      let count = localStorage.getItem("count")
+        ? parseInt(localStorage.getItem("count"))
+        : 0;
       const data = [
         { count: 0, clue: "Welcome to Treasure Hunt", code: 01 },
         { count: 1, clue: "Clue 1", code: 02 },
