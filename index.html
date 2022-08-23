@@ -28,65 +28,99 @@
         opacity: 0.7;
       }
 
+      .fa-globe {
+        background: #494a4d;
+        color: white;
+      }
+
       .fa-facebook {
-        background: #3b5998;
+        background: #4267b2;
         color: white;
       }
 
       .fa-twitter {
-        background: #55acee;
+        background: #1da1f2;
         color: white;
       }
-      
+
       .fa-instagram {
-        background: #f40083;
+        background: #e1306c;
         color: white;
       }
     </style>
   </head>
   <body>
     <div class="jumbotron text-center">
-      <img src="images/logo.png" class="mx-auto d-block" height="125px" />
+      <img src="images/logo.png" class="mx-auto d-block" height="100px" />
       <h2>Yarl IT Hub</h2>
       <p><strong>புதையல் வேட்டை - 2022</strong></p>
-
+      <a href="#" class="fa fa-globe"></a>
       <a href="#" class="fa fa-facebook"></a>
       <a href="#" class="fa fa-twitter"></a>
       <a href="#" class="fa fa-instagram"></a>
     </div>
 
     <div class="container text-center">
-      <h5 id="output"></h5>
+      <div id="output"></div>
       <br />
-      <div>Enter the code Below</div>
-      <div id="message" class="alert alert-danger" style="display: none">
-        <strong>Wrong Code, Try Again</strong>
+      <div id="input-area">
+        <div id="message" class="alert alert-danger" style="display: none">
+          <strong>பிழையான கடவுச்சொல், மீண்டும் முயற்சிக்கவும்</strong>
+        </div>
+        <div><strong>கடவுச்சொல்லை உள்ளிடவும்</strong></div>
+        <input type="number" class="form-control" id="code" />
+        <br />
+        <button class="btn btn-primary" onclick="checkCode()">Submit</button>
       </div>
-      <input type="number" class="form-control" id="code" />
-      <br />
-      <button class="btn btn-primary" onclick="checkCode()">Submit</button>
     </div>
     <script>
       let count = localStorage.getItem("count")
         ? parseInt(localStorage.getItem("count"))
         : 0;
       const data = [
-        { code: 0, clue: "Welcome to Treasure Hunt" },
         {
-          code: 1,
+          code: 0,
+          clue: "<h3>புதிர் வேட்டைக்கு வருக. </h3> <h4>தரப்படும் அறிவுறுத்தல்களை நன்கு கிரகித்து இறுதியில் தரும் கடவுச்சொல்லை உள்ளிடுவதன் மூலம் முதலாவது தடயத்தை பெறலாம்.</h4> <h4>வெற்றி பெற வாழ்த்துக்கள்</h4>",
+        },
+        {
+          code: 741837707,
           clue: "வீதியில் ஓர் விளக்கிருக்கும் <br/> விளக்கருகே ஓர் வீடிருக்கும் <br/> காப்பீடாய் ஒரு பலகை உண்டு <br/> அதனருகே இந்த அறிக்கை உண்டு <br/> அதில் அருள் சேர் முருகன் நகையுமுண்டு <br/> அதன் அழைப்பிலக்கமாய் அடுத்த தடயம் உண்டு",
         },
-        { code: 2, clue: "Clue 2" },
+        {
+          code: 1,
+          clue: "நாழி அரிசி சோறு உண்டான் <br/> எமனுக்கு உயிர் கொடான் <br/> மீறி நடப்பின் செல்ல இடமுண்டு <br/> இவ் அதிகாரி தலைமையில் இது இங்குண்டு. <br/> இதன் முன்னே இந்த அறிவித்தல் உண்டு  <br/> இடைவெளி பேணும் தூரம் அதை  <br/> உள்ளிட்டால் வரும் அடுத்த தடயம்",
+        },
         { code: 3, clue: "Clue 3" },
-        { code: 4, clue: "Clue 4" },
+        {
+          code: 1903,
+          clue: "63 நாயன்மாரில் இவர் ஒருவர் <br/> நின்ற சீர்நெடுமாறனின் துணைவி இவர் <br/> இவர் பெயரில் இவ் பள்ளி இங்குண்டு <br/> இது ஆரம்பித்த ஆண்டில் அடுத்த தடயமுண்டு",
+        },
         { code: 5, clue: "Clue 5" },
         { code: 6, clue: "Clue 6" },
-        { code: 7, clue: "Clue 7" },
-        { code: 8, clue: "Clue 8" },
+        {
+          code: 5014,
+          clue: "சைவ அடியார்கள் சார்ந்த ஓர் இடம் <br/> அம்பலவாணர் நிறுவிய மடம் <br/> கிறிஸ்துக்கு பின் தோன்றியது <br/> அதன் கலியுக வருடத்தில் அடுத்த தடயம்",
+        },
+        {
+          code: 100,
+          clue: "Yarl IT Hub சார்ந்த ஒரு புதிர். <br/> பல தொழில்சார் முனைவர்களை உருவாக்கும் Yarl IT Hub ஆனது 2022 ஆம் ஆண்டின் இறுதியில் குறித்த எண்ணிக்கையான புதிய தொழில் நிறுவனங்களை உருவாக்குவதை ஊக்குவிப்பதை இலக்காக கொண்டுள்ளது <br/> அந்த எண்ணிக்கை அடுத்த தடயத்திற்கு கூட்டிச் செல்லும் <br/> (www.yarlithub.org )",
+        },
+        { code: 9, clue: "Clue 8" },
+        {
+          code: 800,
+          clue: "தொன்மைக்கால மாந்தர் தம் செயல்பாடு <br/> அதை பகுப்பாய்வு புலம் சார்ந்தது <br/> அதற்கு வழி செல் வழிகாட்டி <br/> இதன் தூரம்",
+        },
+        {
+          code: 7,
+          clue: "ஒவ்வோர் இரவும் உட்சென்று <br/> மறுநாள் சேற்றில் மலர்வது இங்குண்டு <br/> ஈட்டி ஏந்திநிற்பவன் எண்ணிக்கை <br/> வழிகாட்டும் புதையலுக்கான எண்ணை",
+        },
+        { code: 111, clue: "" },
       ];
 
       document.getElementById("output").innerHTML = data[count].clue;
-
+      if (count == 12) {
+        document.getElementById("input-area").innerHTML == "";
+      }
       function checkCode() {
         const enteredCode = document.getElementById("code").value;
         if (enteredCode == data[count].code) {
