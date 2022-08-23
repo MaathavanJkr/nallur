@@ -19,7 +19,7 @@
     </div>
 
     <div class="container text-center">
-      <h3 id="output"></h3>
+      <h5 id="output"></h5>
       <br />
       <div>Enter the code Below</div>
       <div id="message" class="alert alert-danger" style="display: none">
@@ -30,18 +30,22 @@
       <button class="btn btn-primary" onclick="checkCode()">Submit</button>
     </div>
     <script>
-
-      let count = localStorage.getItem("count") ? localStorage.getItem("count") : 0;
+      let count = localStorage.getItem("count")
+        ? parseInt(localStorage.getItem("count"))
+        : 0;
       const data = [
-        { count: 0, clue: "Welcome to Treasure Hunt", code: 01 },
-        { count: 1, clue: "Clue 1", code: 02 },
-        { count: 2, clue: "Clue 2", code: 02 },
-        { count: 3, clue: "Clue 3", code: 02 },
-        { count: 4, clue: "Clue 4", code: 02 },
-        { count: 5, clue: "Clue 5", code: 02 },
-        { count: 6, clue: "Clue 6", code: 02 },
-        { count: 7, clue: "Clue 7", code: 02 },
-        { count: 8, clue: "Clue 8", code: 02 },
+        { code: 0, clue: "Welcome to Treasure Hunt" },
+        {
+          code: 1,
+          clue: "வீதியில் ஓர் விளக்கிருக்கும் <br/> விளக்கருகே ஓர் வீடிருக்கும் <br/> காப்பீடாய் ஒரு பலகை உண்டு <br/> அதனருகே இந்த அறிக்கை உண்டு <br/> அதில் அருள் சேர் முருகன் நகையுமுண்டு <br/> அதன் அழைப்பிலக்கமாய் அடுத்த தடயம் உண்டு",
+        },
+        { code: 2, clue: "Clue 2" },
+        { code: 3, clue: "Clue 3" },
+        { code: 4, clue: "Clue 4" },
+        { code: 5, clue: "Clue 5" },
+        { code: 6, clue: "Clue 6" },
+        { code: 7, clue: "Clue 7" },
+        { code: 8, clue: "Clue 8" },
       ];
 
       document.getElementById("output").innerHTML = data[count].clue;
